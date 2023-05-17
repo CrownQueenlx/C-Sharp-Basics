@@ -12,7 +12,7 @@ int points = 5000;
 int lives = 3;
 int vbhCount = 0; //vulnerable bird hunters
 int extraLife = 0; //earned?
-
+int totalLives = lives += extraLife;
 //Iterate over each interaction/encounter/bird
 
     // Each encounter calculate points, life, death
@@ -75,7 +75,7 @@ foreach (string encounter in encounters)
     {
         lives--;
         //if you die end the loop
-        if (lives == 0)//lives <1
+        if (totalLives == 0)//lives <1
         {
             break;
         }
@@ -83,4 +83,4 @@ foreach (string encounter in encounters)
     // totalPoints == (points+)
 }
     Console.WriteLine(points);
-    Console.WriteLine(lives);
+    Console.WriteLine(totalLives);

@@ -7,7 +7,10 @@ namespace Data;
 public class StreamingContent
 {
     //this constructor allows us to make completely blank StreamingContent objects
-    public StreamingContent(){ }
+    public StreamingContent()
+    { 
+        MaturityRating = MaturityRating.Unrated;
+    }
     //constructor
     public StreamingContent(
         string title,
@@ -55,5 +58,5 @@ public class StreamingContent
 
 public enum MaturityRating
 {
-    G, PG, PG_13, R, NC_17, TV_Y, TV_G, TV_PG, TV_14, TV_MA
+    G, PG, PG_13, R, NC_17, TV_Y, TV_G, TV_PG, TV_14, TV_MA, Unrated
 }
