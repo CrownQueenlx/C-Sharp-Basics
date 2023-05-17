@@ -9,7 +9,7 @@ Console.WriteLine(content.MaturityRating);
 content.MaturityRating = MaturityRating.TV_Y;
 Console.WriteLine(content.IsFamilyFriendly);
 
-// StreamingContentRepository repository = new StreamingContentRepository();
+StreamingContentRepository repository = new StreamingContentRepository();
 
-// bool wasAdded = repository.AddContentToDirectory(content);
-// Console.WriteLine(wasAdded ? "The content was added" : "The content was not added");
+bool wasAdded = repository.AddContentToDirectory(content);
+Console.WriteLine(wasAdded ? "The content was added" : "The content was not added");
