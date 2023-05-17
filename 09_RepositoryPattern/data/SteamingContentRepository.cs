@@ -55,6 +55,21 @@ public class StreamingContentRepository
         return new List<StreamingContent>(_contentDirectory);
     }
 
+    public StreamingContent? GetContentByTitle(string title)
+    {   
+        // Loop through each streaming content instance in the directory
+        foreach (StreamingContent SC in _contentDirectory)
+        {
+            // Check that the title of SC (iterator) equals the title parameter
+            if (SC.Title?.ToLower() == title.ToLower()) //.ToLower provides consistancy so users can type quickly
+            {
+                // If the titles match, return SC
+                return SC;
+            }
+        }
+        // If we've looped through the entire directory and not found the title
+        return null;
+    }
     // Update
 
     // Delete
