@@ -1,65 +1,86 @@
 ﻿// This is the Drofsnar Game Challenge
-using System;
-using System.IO;
+// Turn the file into C#
+string fileContent = File.ReadAllText("Drofsnar-game-sequence.txt");
+Console.WriteLine(fileContent);
 
-class Program
-{
-    static void Main()
-    {
-        using (StreamReader reader = new StreamReader(filePath))
-        {
+// Turn the C# string into an array sor we can iterate ocer it
+string[] encounters = fileContent.Split(",");
+Console.WriteLine(encounters);
 
-            //Specifu file path
+// Declare the starting values
+int points = 5000;
+int lives = 3;
+int vbhCount = 0; //vulnerable bird hunters
+int extraLife = 0; //earned?
 
-        public string[] points = fileContents.Split(',');
+//Iterate over each interaction/encounter/bird
+
+    // Each encounter calculate points, life, death
+
+    //Specify file path
+
     // Create a streamReader object
     //Read the entire contents of the file
-    public string fileContents = reader.ReadToEnd();
 
     //Display the point to the console
     // Console.WriteLine(fileContents);
-    int LifeTotal = 3;
-    int PointTotal = 5000;
-    int VulnerableBirdHunters;
-    int i = 0;
-    string filePath = @"Challanges\005_DrofsnarTheBird-Man\Drofsnar-game-sequence.txt";
-    string grandTotal;
 
-    int Life = 10000;
-        switch Encounter(pointTotal == PointTotal+i)
+foreach (string encounter in encounters)
+{
+    Console.WriteLine(encounter);
+    //Switch Expression
+    int pointsToAdd = encounter switch
+    {   //caseValue => returnValue
+        "bird" => 10,
+        "CrestedIbis" => 100,
+        "GreatKiskudee" => 300,
+        "RedCrossbill" => 500,
+        "Red-neckedPhalarope" => 700,
+        "EveningGrosbeak" => 1000,
+        "GreaterPrairieChicken" => 2000,
+        "IcelandGull" => 3000,
+        "Orange-belliedParrot" => 5000,
+        _ => 0 //default
+    };
+
+    points += pointsToAdd; // points = points + pointsToAdd;
+
+    // Calculate the Vulnerable Bird Hunter points
+    if (encounter == "VulnerableBirdHunters")
     {
-        using case:
-        bird: i = 10;
-            break;
-        CrestedIbis: i = 100;
-            break;
-        GreatKiskudee: i = 300;
-            break;
-        RedCrossbill: i = 500;
-            break;
-        RedneckedPhalarope: i = 700;
-            break;
-        EveningGrosbeak: i = 1000;
-            break;
-        GreaterPrairieChicken: i = 2000;
-            break;
-        IcelandGull: i = 3000;
-            break;
-        OrangeBelliedParrot: i = 5000;
-            break;
-            // VulnerableBirdHunters: foreach
-            // (   
-            //     //  VulnerableBirdHunters *200
+        int vbhPoints = vbhCount switch
+        {
+            0 => 200,
+            1 => 400,
+            2 => 800,
+            3 => 1600,
+            _ => 0
+        };
+        points += vbhPoints;
+        vbhCount++;
+        Console.WriteLine($"You have found {vbhCount} Vulnerable Bird Hunters.");
+    }
 
-            // )
+    //get a bonus life at 10k points
+    if (points / 10000 > extraLife)
+    {
+        lives++;
+        extraLife++;
+        Console.Write(points);
+        Console.Write("You earned a life!");
+    }
+
+    // Invincable Bird Hunters
+    if (encounter == "InvincibleBirdHunter")
+    {
+        lives--;
+        //if you die end the loop
+        if (lives == 0)//lives <1
+        {
             break;
-
-
-        default:
         }
     }
-    // string Species type = Species
-    // enum Dischipher {bird, CrestedIbis, GreatKiskudee, RedCrossbill, Red-neckedPhalarope, EveningGrosbeak, GreaterPrairieChicken}
-
+    // totalPoints == (points+)
 }
-}
+    Console.WriteLine(points);
+    Console.WriteLine(lives);
