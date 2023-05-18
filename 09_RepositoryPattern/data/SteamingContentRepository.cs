@@ -71,8 +71,27 @@ public class StreamingContentRepository
         return null;
     }
     // Update
+    
 
     // Delete
 
+
+    // Remove existing content from our directory
+    public bool DeleteExistingContent(StreamingContent existingContent)
+    {
+        bool deleteResult = _contentDirectory.Remove(existingContent);
+        return deleteResult;
+    }
+
+    public bool DeleteContentByTitle(string title)
+    {
+        StreamingContent? targetContent = GetContentByTitle(title);
+        if (targetContent == null)
+        {
+            return false;
+        }
+        bool deleteResult = DeleteExistingContent(targetContent);
+        return deleteResult;
+    }
 
 }
