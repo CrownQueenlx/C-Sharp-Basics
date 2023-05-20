@@ -1,4 +1,6 @@
+using Data;
 namespace Data;
+
 public class StreamingContentRepository
 {
     // Field acts as our "Database" connection
@@ -71,7 +73,34 @@ public class StreamingContentRepository
         return null;
     }
     // Update
-    
+    public bool UpdateExistingContent(string originalTitle, StreamingContent newContent)
+    {
+        StreamingContent? oldContent = GetContentByTitle(originalTitle);
+
+        if (oldContent == null)
+        {
+            // if oldContent was not found, we return false
+            return false;
+        }
+        // oldContent was found and is not null
+
+        //  Only need option one or option two, not both:
+
+        //  1) Replace values for all properties
+        // This way the reference never changes
+        oldContent.Title = newContent.Title;
+        oldContent.Genre = newContent.Genre;
+        oldContent.Description = newContent.Description;
+        oldContent.MaturityRating = newContent.MaturityRating;
+        oldContent.UserScore = newContent.UserScore;
+
+        // 2) Replace the reference held in the List
+        // Swap one stored reference for another
+        // int index = _contentDirectory.IndexOf(oldContent);
+        // _contentDirectory[index] = newContent;
+
+        return true; //finishes the boolian method 
+    } 
 
     // Delete
 

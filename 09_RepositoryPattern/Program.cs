@@ -38,8 +38,17 @@ Console.WriteLine(foundContent?.Genre);
 Console.WriteLine(foundContent?.Description);
 Console.WriteLine(foundContent?.IsFamilyFriendly);
 
+StreamingContent toyStory2 = new StreamingContent("Toy Story 2", "Bromance Part 2", "A stroy about toys", 7.5, MaturityRating.G);
+repository.UpdateExistingContent("Toy Story", toyStory2);
+
+foreach(var title in repository.GetTitles())
+{
+    Console.WriteLine(title);
+}
+
+
 // bool wasDeleted = repository.DeleteExistingContent(foundContent);
 
-bool wasDeleted = repository.DeleteContentByTitle("toy stroy");
+bool wasDeleted = repository.DeleteContentByTitle("toy story");
 
 Console.WriteLine(wasDeleted ? "The content was deleted" : "The content was not deleted");

@@ -20,7 +20,7 @@ public class StreamingContent
         MaturityRating rating)
     {
         // Property = parameter;
-        Title= title;
+        Title = title;
         Genre = genre;
         Description = description;
         UserScore = score;
